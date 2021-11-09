@@ -44,6 +44,10 @@ Confusion Matrix of Decision Tree
 
 <img src="![Count plot for Income by Labels](https://user-images.githubusercontent.com/70437668/140843059-ea66e192-4d4d-4002-a496-58e32c696952.jpg)" width=50% height=50%>
 
+#### Dashboard - Income by Occupation of selected Countries (Radar chart)
+
+![Dashboard - Income by Occupation of selected Countries](https://user-images.githubusercontent.com/70437668/141012402-63cfa6c3-ca8e-493f-9a6f-8755c336be60.jpg)
+
 #### Dashboard - Income, Race
 
 ![Dashboard - Income, Race](https://user-images.githubusercontent.com/70437668/140843027-abf72a9b-a91d-4125-9af0-908cafebf2e9.jpg)
