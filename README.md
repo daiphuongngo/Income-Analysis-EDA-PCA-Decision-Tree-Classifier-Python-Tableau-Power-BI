@@ -20,7 +20,15 @@ Analyzing the background and income of surveyed adults
 
 ### Apply PCA
 
+PCA Explained Variance Ratio - Cumulative Explained Variance vs Number of Components
+
+<img src="![PCA Explained Variance Ratio - Cumulative Explained Variance vs Number of Components](https://user-images.githubusercontent.com/70437668/140874541-6570c441-4a76-4a50-ab8e-70b992d26728.jpg)" width=50% height=50%>
+
 ### Decision Tree
+
+Confusion Matrix of Decision Tree
+
+<img src="![Confusion Matrix of Decision Tree](https://user-images.githubusercontent.com/70437668/140874598-df4f59a3-a942-4dbc-8485-2d3fe7896453.jpg)" width=50% height=50%>
 
 ### Data Visualization in Python
 
