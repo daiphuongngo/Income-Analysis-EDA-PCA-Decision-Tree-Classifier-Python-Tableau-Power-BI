@@ -14,17 +14,114 @@ Analyzing the background and income of surveyed adults
 
 ### Load libraries
 
+```
+import pandas as pd
+import numpy as np 
+import seaborn as sns
+import itertools
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import confusion_matrix
+```
+
 ### Data Exploration 
 
 ### Data Preparation for Training
 
+###  Split data into Train Set và Test Set (test_size=0.3)
+```
+from sklearn.model_selection import train_test_split
+X_test, X_train, y_test, y_train = train_test_split(X_np, y_np, test_size=0.3, shuffle=True, random_state=1612)
+```
+
+### Use StandardScaler to scale X_train và X_test
+```
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+# Fit on training set only.
+scaler.fit(X_train)
+# Apply transform to both the training set and the test set.
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+```
+
 ### Apply PCA
+
+```
+from sklearn.decomposition import PCA
+import numpy as np
+import matplotlib.pyplot as plt
+
+# noisy = np.random.normal(mnist.data, 4) # X = mnist.data
+# pca = PCA(0.99).fit(noisy)
+
+pca = PCA(0.99)
+```
+
+```
+X_train_pca = pca.fit_transform(X_train_scaled)
+print('Shape of X_train_pca:', X_train_pca.shape)
+
+X_test_pca = pca.transform(X_test_scaled)
+print('Shape of X_test_pca:', X_test_pca.shape)
+
+num_comp = pca.n_components_
+print('Number of components:', num_comp)
+```
+
+```
+plt.plot(np.cumsum(pca.explained_variance_ratio_))
+plt.xlabel('number of components')
+plt.ylabel('cumulative explained variance');
+```
 
 PCA Explained Variance Ratio - Cumulative Explained Variance vs Number of Components
 
 <img src="https://user-images.githubusercontent.com/70437668/140874541-6570c441-4a76-4a50-ab8e-70b992d26728.jpg" width=50% height=50%>
 
 ### Decision Tree
+
+```
+import itertools
+def plot_confusion_matrix(cm, classes, ax,
+                          normalize=False,
+                          title='Confusion matrix',
+                          cmap=plt.cm.Blues):
+    """
+    This function prints and plots the confusion matrix.
+    Normalization can be applied by setting `normalize=True`.
+    """
+    print(cm)
+    print('')
+
+    ax.imshow(cm, interpolation='nearest', cmap=cmap)
+    ax.set_title(title)
+    tick_marks = np.arange(len(classes))
+    plt.xticks(tick_marks, classes, rotation=45)
+    plt.sca(ax)
+    plt.yticks(tick_marks, classes)
+
+    fmt = '.2f' if normalize else 'd'
+    thresh = cm.max() / 2.
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        ax.text(j, i, format(cm[i, j], fmt),
+                horizontalalignment="center",
+                color="white" if cm[i, j] > thresh else "black")
+
+    ax.set_ylabel('True label')
+```
+
+```
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.metrics import confusion_matrix
+tree = DecisionTreeClassifier()
+tree.fit(X_train_pca, y_train)
+y_pred_tree = tree.predict(X_test_pca)
+
+cm_tree = confusion_matrix(y_test, y_pred_tree)
+fig, ax = plt.subplots()
+plot_confusion_matrix(cm_tree, classes=np.unique(y), ax=ax,
+                      title='Decision tree')
+```
 
 Confusion Matrix of Decision Tree
 
