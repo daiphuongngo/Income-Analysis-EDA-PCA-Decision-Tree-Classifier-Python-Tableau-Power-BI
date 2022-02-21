@@ -27,13 +27,13 @@ from sklearn.metrics import confusion_matrix
 
 ### Data Preparation for Training
 
-###  Split data into Train Set và Test Set (test_size=0.3)
+###  Split data into Train Set and Test Set (test_size=0.3)
 ```
 from sklearn.model_selection import train_test_split
 X_test, X_train, y_test, y_train = train_test_split(X_np, y_np, test_size=0.3, shuffle=True, random_state=1612)
 ```
 
-### Use StandardScaler to scale X_train và X_test
+### Use StandardScaler to scale X_train and X_test
 ```
 from sklearn.preprocessing import StandardScaler
 scaler = StandardScaler()
